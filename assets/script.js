@@ -6,7 +6,7 @@ let currentEl=document.querySelector("#current");
 var iconEl = document.createElement("img");
 var forecastIconEl=[]; 
 var historyButtonEl=[]
-if(localStorage.getItem("searchedCities") !== "null"){
+if ( localStorage.length >0 ){
   var searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
   }
 for (let i = 0; i <= 5; i++) {
