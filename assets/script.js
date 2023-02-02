@@ -6,11 +6,11 @@ let currentEl=document.querySelector("#current");
 var iconEl = document.createElement("img");
 var forecastIconEl=[]; 
 var historyButtonEl=[]
-if(localStorage.getItem("searchedCities")){
+if(localStorage.getItem("searchedCities") !== "null"){
   var searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
   }
 for (let i = 0; i <= 5; i++) {
-  console.log(searchedCities[i]);
+  // console.log(searchedCities[i]);
   forecastIconEl[i]=document.createElement("img");
   historyButtonEl[i]=document.createElement("button");
   buttonName="#historyBtn"+[i]
