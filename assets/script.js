@@ -1,7 +1,7 @@
 var today=(moment().format("D/M/YYYY"));
 let lat;
 let lon;
-var searchedCities=["","","","","",""];
+var searchedCities=["1st City","2nd City","3rd City","4th City","5th City","6th City"];
 let currentEl=document.querySelector("#current");
 var iconEl = document.createElement("img");
 var forecastIconEl=[]; 
@@ -25,9 +25,7 @@ document.querySelector("#search-button").addEventListener("click", function(even
     city(cityName);
   };
   
-  historyButtonsClick();
-  
-    
+      
   });
   
   function city(city){
@@ -102,19 +100,5 @@ function refreshCityNames(){
   }
 }
 
-function  historyButtonsClick(){
-
-let buttonsView = document.querySelector("#buttons-view")
-
-buttonsView.addEventListener("click", function (event) {
-
-  if(event.target.matches("button"))
-  {
-    let city = event.target.textContent;
-    console.log(city);
-  }
-
-});
-}
 
 }; //-----------------end of programme
