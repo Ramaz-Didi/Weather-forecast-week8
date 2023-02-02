@@ -1,13 +1,14 @@
 var today=(moment().format("D/M/YYYY"));
 let lat;
 let lon;
-var searchedCities=["1st City","2nd City","3rd City","4th City","5th City","6th City"];
+var searchedCities=["Searched City","Searched City","Searched City","Searched City","Searched City","Searched City"];
 let currentEl=document.querySelector("#current");
 var iconEl = document.createElement("img");
 var forecastIconEl=[]; 
 var historyButtonEl=[]
-var searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
-console.log(searchedCities);
+if(localStorage.getItem('transaction_Deposite')){
+  var searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
+  }
 for (let i = 0; i <= 5; i++) {
   console.log(searchedCities[i]);
   forecastIconEl[i]=document.createElement("img");
