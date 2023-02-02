@@ -1,15 +1,19 @@
 var today=(moment().format("D/M/YYYY"));
 let lat;
 let lon;
-var country="";
-var searchedCities=["1ST","2ND","3RD","4TH","5TH","6TH"];
+var searchedCities=["","","","","",""];
 let currentEl=document.querySelector("#current");
 var iconEl = document.createElement("img");
 var forecastIconEl=[]; 
-
-for (let i = 0; i < 5; i++) {
+var historyButtonEl=[]
+var searchedCities = JSON.parse(localStorage.getItem("searchedCities"));
+console.log(searchedCities);
+for (let i = 0; i <= 5; i++) {
+  console.log(searchedCities[i]);
   forecastIconEl[i]=document.createElement("img");
-  
+  historyButtonEl[i]=document.createElement("button");
+  buttonName="#historyBtn"+[i]
+  document.querySelector(buttonName).textContent=searchedCities[i];
 }
 
 document.querySelector("#search-button").addEventListener("click", function(event) {
@@ -19,10 +23,10 @@ document.querySelector("#search-button").addEventListener("click", function(even
   if (cityName !== "")
   {
     city(cityName);
-    console.log(searchedCities);
   };
   
-    
+  historyButtonsClick();
+  
     
   });
   
@@ -38,25 +42,15 @@ document.querySelector("#search-button").addEventListener("click", function(even
       document.querySelector("#search-result").textContent="no city found, please try again";
       return
     };
-    // document.querySelector("#search-result").textContent="";
-    // console.log[data];
-    // for (let j = 0; j<6; j++)
-    // {
-      //   if (searchedCities[j]=city)
-      //   {
-        //     for (let k = 4; k>=j; j--){
-          //       searchedCities[k+1]=searchedCities[k];
-          //     }
-          //   }
-          
-          //   }
-          for (let j = 4; j>=0; j--){
+        for (let j = 4; j>=0; j--){
             searchedCities[j+1]=searchedCities[j];
           }
           searchedCities[0]=city;
           console.log(searchedCities)
           
-          let country =data[0].country;
+          localStorage.setItem("searchedCities", JSON.stringify(searchedCities));
+          refreshCityNames()
+          
           var lat=data[0].lat;
           var lon=data[0].lon;
     queryCurrentURL = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lon+"&units=metric&appid=426bcfa64de6ba8887447e7026d9ce4a";
@@ -101,6 +95,26 @@ document.querySelector("#search-button").addEventListener("click", function(even
       
     }
   })
+function refreshCityNames(){
+  for (let i = 0; i <= 5; i++) {
+    buttonName="#historyBtn"+[i]
+    document.querySelector(buttonName).textContent=searchedCities[i];
+  }
+}
 
+function  historyButtonsClick(){
+
+let buttonsView = document.querySelector("#buttons-view")
+
+buttonsView.addEventListener("click", function (event) {
+
+  if(event.target.matches("button"))
+  {
+    let city = event.target.textContent;
+    console.log(city);
+  }
+
+});
+}
 
 }; //-----------------end of programme

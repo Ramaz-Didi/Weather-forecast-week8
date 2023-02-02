@@ -1,0 +1,14 @@
+.card-body {
+    background-color: rgb(12, 12, 80);
+    color: azure;
+}
+.card-text {
+    color: azure;
+}
+.list-group {
+    color: rgb(191, 24, 24);
+    margin: 2px;
+}
+#forecast {
+    border: 2px;
+}
